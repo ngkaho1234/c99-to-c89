@@ -39,5 +39,5 @@ c99wrap$(EXT): compilewrap.o
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
-install: c99conv$(EXT) c99wrap$(EXT)
+install: all
 	install -m755 c99conv$(EXT) c99wrap$(EXT) $(PREFIX)/bin
