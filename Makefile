@@ -1,13 +1,14 @@
 EXT =
+PREFIX=/usr/local
 
 all: c99conv$(EXT) c99wrap$(EXT)
 
 OBJS = convert.o
 
-CC=/opt/local/bin/clang-mp-3.2
+CC=clang
 LD=$(CC)
-CFLAGS=-I/opt/local/libexec/llvm-3.2/include -g
-LDFLAGS=-L/opt/local/libexec/llvm-3.2/lib -g
+CFLAGS=-g
+LDFLAGS=-g
 LIBS=-lclang
 
 clean:
@@ -37,3 +38,6 @@ c99wrap$(EXT): compilewrap.o
 
 %.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
+
+install: c99conv$(EXT) c99wrap$(EXT)
+	install -m755 c99conv$(EXT) c99wrap$(EXT) $(PREFIX)/bin
